@@ -1,0 +1,85 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "h5Q1o+kA7VMAR5QpBzVJZbBEgC0=",
+			"path": "github.com/Sirupsen/logrus",
+			"revision": "881bee4e20a5d11a6a88a5667c6f292072ac1963",
+			"revisionTime": "2016-12-02T02:35:07Z"
+		},
+		{
+			"checksumSHA1": "Ok3Csn6Voou7pQT6Dv2mkwpqFtw=",
+			"path": "github.com/hashicorp/hcl",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "XQmjDva9JCGGkIecOgwtBEMCJhU=",
+			"path": "github.com/hashicorp/hcl/hcl/ast",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "vF6LLywGDoAaccTcAGrcY7mYvZc=",
+			"path": "github.com/hashicorp/hcl/hcl/parser",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "z6wdP4mRw4GVjShkNHDaOWkbxS0=",
+			"path": "github.com/hashicorp/hcl/hcl/scanner",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "oS3SCN9Wd6D8/LG0Yx1fu84a7gI=",
+			"path": "github.com/hashicorp/hcl/hcl/strconv",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "c6yprzj06ASwCo18TtbbNNBHljA=",
+			"path": "github.com/hashicorp/hcl/hcl/token",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "138aCV5n8n7tkGYMsMVQQnnLq+0=",
+			"path": "github.com/hashicorp/hcl/json/parser",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "YdvFsNOMSWMLnY6fcliWQa0O5Fw=",
+			"path": "github.com/hashicorp/hcl/json/scanner",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "fNlXQCQEnb+B3k5UDL/r15xtSJY=",
+			"path": "github.com/hashicorp/hcl/json/token",
+			"revision": "80e628d796135357b3d2e33a985c666b9f35eee1",
+			"revisionTime": "2016-12-15T22:58:39Z"
+		},
+		{
+			"checksumSHA1": "EdkVkzLFEc7fB1Xf7gm1WnYtDII=",
+			"path": "github.com/michaelklishin/rabbit-hole",
+			"revision": "710f32371ccbfbe499fe0b9f97319e0f9dddb942",
+			"revisionTime": "2016-12-11T12:17:32Z"
+		},
+		{
+			"checksumSHA1": "LAR/G/IY1GviHYkGAoi6kVXq1Jg=",
+			"path": "github.com/mitchellh/mapstructure",
+			"revision": "bfdb1a85537d60bc7e954e600c250219ea497417",
+			"revisionTime": "2016-12-11T22:23:15Z"
+		},
+		{
+			"checksumSHA1": "uTQtOqR0ePMMcvuvAIksiIZxhqU=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "d75a52659825e75fff6158388dddc6a5b04f9ba5",
+			"revisionTime": "2016-12-14T18:38:57Z"
+		}
+	],
+	"rootPath": "github.com/jippi/nomad-auto-scale"
+}

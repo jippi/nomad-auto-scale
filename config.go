@@ -8,14 +8,14 @@ import (
 )
 
 // NewConfig will return a Config struct
-func NewConfig(file string) (*Config, error) {
+func NewConfig(file string) (*RootConfig, error) {
 	config, err := ioutil.ReadFile(file)
 	if err != nil {
 		log.Errorf("Failed to read file: %s", err)
 		return nil, err
 	}
 
-	var out Config
+	var out RootConfig
 	hclErr := hcl.Decode(&out, string(config))
 	if hclErr != nil {
 		log.Errorf("HCL Error: %s", hclErr)

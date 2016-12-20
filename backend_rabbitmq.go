@@ -19,6 +19,50 @@ type RabbitMQBackend struct {
 	Connection *rabbit.Client
 }
 
+// GetValue derp
+func (b *RabbitMQBackend) GetValue(rule Rule) (float64, error) {
+	checkType := rule.GetConfigString("check_type", "")
+	if checkType == "" {
+		return 0.0, fmt.Errorf("Missing check_type insie config{} stanza")
+	}
+
+	queueName := rule.GetConfigString("queue_name", "")
+	if queueName == "" {
+		return 0.0, fmt.Errorf("Missing queue_name inside config{} stanza")
+	}
+
+	vhost := rule.GetConfigString("vhost", "/")
+
+	switch checkType {
+	case "queue_length":
+		return b.GetQueueLength(vhost, queueName)
+	case "queue_utilization":
+		return b.GetQueueUtilization(vhost, queueName)
+	default:
+		return 0.0, fmt.Errorf("Unknown check_type: %s", checkType)
+	}
+}
+
+// GetQueueLength ...
+func (b *RabbitMQBackend) GetQueueLength(vhost string, queue string) (float64, error) {
+	q, err := b.Connection.GetQueue(vhost, queue)
+	if err != nil {
+		return 0.0, err
+	}
+
+	return float64(q.Messages), nil
+}
+
+// GetQueueUtilization ...
+func (b *RabbitMQBackend) GetQueueUtilization(vhost string, queue string) (float64, error) {
+	q, err := b.Connection.GetQueue(vhost, queue)
+	if err != nil {
+		return 0.0, err
+	}
+
+	return q.ConsumerUtilisation, nil
+}
+
 // NewRabbitMQBackend will create a new RabbitMQ Client
 func NewRabbitMQBackend(name string, config RabbitMQConfig) (*RabbitMQBackend, error) {
 	if config.Address == "" {

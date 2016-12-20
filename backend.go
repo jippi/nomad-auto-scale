@@ -7,6 +7,11 @@ import (
 	mapstructure "github.com/mitchellh/mapstructure"
 )
 
+// Backender interface
+type Backender interface {
+	GetValue(rule Rule) (float64, error)
+}
+
 // IniitalizeBackends will derp
 func IniitalizeBackends(backends map[string]Backend) (ConfiguredBackends, error) {
 	configuredBackends := make(ConfiguredBackends, 0)

@@ -36,28 +36,49 @@ func main() {
 	for name := range backends {
 		log.Infof("  -> %s", name)
 	}
+
+	runners := make(Runners, 0)
+
 	log.Info("")
 	log.Infof("Found %d jobs", len(config.Jobs))
-	for _, jobConfig := range config.Jobs {
-		log.Infof("  -> Job: %s", jobConfig.Name)
+	for _, job := range config.Jobs {
+		log.Infof("  -> Job: %s", job.Name)
 
-		for _, groupConfig := range jobConfig.Groups {
-			log.Infof("  --> Group: %s", groupConfig.Name)
-			log.Infof("      min_count = %d", groupConfig.MinCount)
-			log.Infof("      max_count = %d", groupConfig.MaxCount)
+		for _, group := range job.Groups {
+			log.Infof("  --> Group: %s", group.Name)
+			log.Infof("      min_count = %d", group.MinCount)
+			log.Infof("      max_count = %d", group.MaxCount)
 
-			// _ := NewRunner(job, groupConfig)
-
-			for _, ruleConfig := range groupConfig.Rules {
-				log.Infof("  ----> Rule: %s", ruleConfig.Name)
-
-				log.Infof("      Backend 	 = %s", ruleConfig.Backend)
-				log.Infof("      CheckType 	 = %s", ruleConfig.CheckType)
-				log.Infof("      Comparison 	 = %s", ruleConfig.Comparison)
-				log.Infof("      ComparisonValue = %f", ruleConfig.ComparisonValue)
-				log.Infof("      IfTrue          = %+v", ruleConfig.IfTrue)
-				log.Infof("      IfFalse         = %+v", ruleConfig.IfFalse)
+			runner := NewRunner(job, group)
+			if err := runner.LoadRules(backends); err != nil {
+				log.Errorf("%s", err)
+				return
 			}
+
+			if err := runner.Validate(); err != nil {
+				log.Errorf("%s", err)
+				return
+			}
+
+			runners = append(runners, runner)
+
+			// for _, rule := range group.Rules {
+			// 	log.Infof("  ----> Rule: %s", rule.Name)
+
+			// 	log.Infof("      Backend 	 = %s", rule.Backend)
+			// 	log.Infof("      CheckType 	 = %s", rule.CheckType)
+			// 	log.Infof("      Comparison 	 = %s", rule.Comparison)
+			// 	log.Infof("      ComparisonValue = %f", rule.ComparisonValue)
+			// 	log.Infof("      IfTrue          = %+v", rule.IfTrue)
+			// 	log.Infof("      IfFalse         = %+v", rule.IfFalse)
+			// }
 		}
+	}
+
+	log.Info("")
+	log.Infof("Numebr of runners: %d", len(runners))
+
+	for _, runner := range runners {
+		runner.Work()
 	}
 }

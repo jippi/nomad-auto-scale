@@ -3,7 +3,7 @@ package main
 // Config struct
 // This is the main configuration, it contain Jobs and other auxiallary configuration
 type Config struct {
-	Jobs     map[string]Job     `hcl:"job"`
+	Jobs     map[string]*Job    `hcl:"job"`
 	Nomad    NomadConfig        `hcl:"nomad"`
 	Backends map[string]Backend `hcl:"backend"`
 }
@@ -21,18 +21,21 @@ type NomadConfig struct {
 
 // Job Struct
 type Job struct {
-	Groups map[string]Group `hcl:"group"`
+	Name   string
+	Groups map[string]*Group `hcl:"group"`
 }
 
 // Group struct
 type Group struct {
-	MinCount int             `hcl:"min_count"`
-	MaxCount int             `hcl:"max_count"`
-	Rules    map[string]Rule `hcl:"rule"`
+	Name     string
+	MinCount int              `hcl:"min_count"`
+	MaxCount int              `hcl:"max_count"`
+	Rules    map[string]*Rule `hcl:"rule"`
 }
 
 // Rule struct
 type Rule struct {
+	Name            string
 	Backend         string                 `hcl:"backend"`
 	CheckType       string                 `hcl:"check_type"`
 	Comparison      string                 `hcl:"comparison"`

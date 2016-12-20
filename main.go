@@ -38,16 +38,18 @@ func main() {
 	}
 	log.Info("")
 	log.Infof("Found %d jobs", len(config.Jobs))
-	for jobName, jobConfig := range config.Jobs {
-		log.Infof("  -> Job: %s", jobName)
+	for _, jobConfig := range config.Jobs {
+		log.Infof("  -> Job: %s", jobConfig.Name)
 
-		for groupName, groupConfig := range jobConfig.Groups {
-			log.Infof("  --> Group: %s", groupName)
+		for _, groupConfig := range jobConfig.Groups {
+			log.Infof("  --> Group: %s", groupConfig.Name)
 			log.Infof("      min_count = %d", groupConfig.MinCount)
 			log.Infof("      max_count = %d", groupConfig.MaxCount)
 
-			for ruleName, ruleConfig := range groupConfig.Rules {
-				log.Infof("  ----> Rule: %s", ruleName)
+			// _ := NewRunner(job, groupConfig)
+
+			for _, ruleConfig := range groupConfig.Rules {
+				log.Infof("  ----> Rule: %s", ruleConfig.Name)
 
 				log.Infof("      Backend 	 = %s", ruleConfig.Backend)
 				log.Infof("      CheckType 	 = %s", ruleConfig.CheckType)
